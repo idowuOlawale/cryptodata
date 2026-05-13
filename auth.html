@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CryptoData | Google Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-50 min-h-screen flex items-center justify-center p-6 font-['Plus_Jakarta_Sans']">
+    <div class="bg-white p-12 rounded-[40px] w-full max-w-md shadow-2xl shadow-slate-200 border border-slate-100 text-center">
+        <div class="w-16 h-16 bg-sky-500 rounded-2xl flex items-center justify-center font-black text-white text-3xl mx-auto mb-8">C</div>
+        <h2 class="text-3xl font-extrabold text-slate-900 mb-2">Welcome Back</h2>
+        <p class="text-slate-500 mb-10">Access Nigeria's premier crypto-data portal.</p>
+        
+        <button id="google-login" class="w-full flex items-center justify-center gap-4 py-4 px-6 border border-slate-200 rounded-2xl font-bold text-slate-700 hover:bg-slate-50 transition transform active:scale-95">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/action/google.svg" class="w-6 h-6">
+            Continue with Google
+        </button>
+        
+        <div class="mt-12 text-slate-400 text-xs flex items-center justify-center gap-4">
+            <span class="w-full h-px bg-slate-100"></span>
+            <span>SECURE</span>
+            <span class="w-full h-px bg-slate-100"></span>
+        </div>
+    </div>
+    <script type="module">
+        import { auth, db } from './firebase-config.js';
+        import { GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        document.getElementById('google-login').onclick = async () => {
+            const provider = new GoogleAuthProvider();
+            try {
+                const result = await signInWithPopup(auth, provider);
+                const user = result.user;
+                const userRef = doc(db, "users", user.uid);
+                const snap = await getDoc(userRef);
+                if (!snap.exists()) {
+                    await setDoc(userRef, { email: user.email, name: user.displayName, balance: 0, isAdmin: false });
+                }
+                window.location.href = 'dashboard.html';
+            } catch (err) { alert("Login failed. Check your Firebase config."); }
+        };
+    </script>
+</body>
+</html>
