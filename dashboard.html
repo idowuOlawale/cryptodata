@@ -5,137 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crypto2Data | Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #050810; }
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 32px;
-        }
-        .crypto-card {
-            background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
-            border-radius: 32px;
-            box-shadow: 0 20px 40px -10px rgba(14, 165, 233, 0.3);
-        }
-        .stat-badge {
-            background: rgba(14, 165, 233, 0.1);
-            border: 1px solid rgba(14, 165, 233, 0.2);
-        }
+        .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 24px; }
+        .asset-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.3s; }
+        .asset-card:hover { background: rgba(14, 165, 233, 0.05); border-color: rgba(14, 165, 233, 0.2); }
     </style>
 </head>
-<body class="text-white min-h-screen pb-20">
-
+<body class="text-white min-h-screen pb-10">
     <div class="max-w-xl mx-auto px-6">
-        <!-- Modern Header -->
         <header class="flex justify-between items-center py-8">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-sky-500 rounded-2xl flex items-center justify-center font-bold text-xl shadow-lg shadow-sky-500/20">C</div>
-                <h1 class="text-xl font-extrabold tracking-tight">Crypto2<span class="text-sky-400">Data</span></h1>
+            <h1 class="text-xl font-extrabold tracking-tight italic">Crypto2<span class="text-sky-400">Data</span></h1>
+            <div class="flex gap-3">
+                <a href="deposit.html" class="bg-sky-500 p-2 rounded-xl hover:bg-sky-400 transition-all">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                </a>
             </div>
-            <button id="logout-btn" class="w-10 h-10 flex items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-gray-400 hover:text-white transition-all">
-                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
-            </button>
         </header>
 
-        <!-- Profile Hero -->
         <section class="mb-8">
-            <div class="flex items-center gap-4 mb-2">
-                <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-sky-400 to-blue-600 p-[2px]">
-                    <div class="w-full h-full rounded-full bg-[#050810] flex items-center justify-center overflow-hidden">
-                        <span id="user-initial" class="text-xl font-bold text-sky-400">?</span>
-                    </div>
-                </div>
-                <div>
-                    <h2 class="text-2xl font-extrabold" id="display-username">Loading...</h2>
-                    <p class="text-gray-500 text-xs font-medium" id="display-email">please wait</p>
-                </div>
-            </div>
+            <p class="text-gray-500 text-xs font-bold uppercase tracking-widest mb-1">Total Estimated Balance</p>
+            <h2 class="text-4xl font-black tracking-tighter">$0.00</h2>
         </section>
 
-        <!-- Balance Card -->
-        <div class="crypto-card p-8 mb-8 relative overflow-hidden">
-            <!-- Decorative circle -->
-            <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
+        <div class="space-y-3 mb-8">
+            <h4 class="text-[10px] font-bold text-gray-600 uppercase tracking-widest ml-1">Your Assets</h4>
             
-            <div class="flex justify-between items-start mb-10">
-                <div>
-                    <p class="text-white/70 text-[10px] font-bold uppercase tracking-widest mb-1">Total Balance</p>
-                    <h3 id="user-balance" class="text-4xl font-black tracking-tighter">0.00 USDT</h3>
+            <!-- ETH Assets -->
+            <div class="asset-card p-4 rounded-2xl flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400 font-bold">Ξ</div>
+                    <div>
+                        <p class="text-sm font-bold">ETH <span class="text-[10px] text-gray-500 font-normal ml-1">Mainnet</span></p>
+                    </div>
                 </div>
-                <div class="stat-badge px-3 py-1 rounded-lg">
-                    <span class="text-[10px] font-bold text-white uppercase">Active</span>
-                </div>
+                <p class="text-sm font-mono font-bold">0.00</p>
             </div>
-            
-            <div class="grid grid-cols-2 gap-4">
-                <a href="deposit.html" class="bg-white text-blue-600 text-center py-4 rounded-2xl font-extrabold text-sm hover:bg-sky-50 transition-all">
-                    Add Funds
-                </a>
-                <a href="buy-data.html" class="bg-black/20 text-white text-center py-4 rounded-2xl font-extrabold text-sm hover:bg-black/30 transition-all border border-white/10">
-                    Buy Data
-                </a>
+
+            <div class="asset-card p-4 rounded-2xl flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-sky-400/10 rounded-full flex items-center justify-center text-sky-300 font-bold">Ξ</div>
+                    <div>
+                        <p class="text-sm font-bold">ETH <span class="text-[10px] text-gray-500 font-normal ml-1">Arbitrum</span></p>
+                    </div>
+                </div>
+                <p class="text-sm font-mono font-bold">0.00</p>
+            </div>
+
+            <div class="asset-card p-4 rounded-2xl flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-blue-600/10 rounded-full flex items-center justify-center text-blue-500 font-bold">Ξ</div>
+                    <div>
+                        <p class="text-sm font-bold">ETH <span class="text-[10px] text-gray-500 font-normal ml-1">Base</span></p>
+                    </div>
+                </div>
+                <p class="text-sm font-mono font-bold">0.00</p>
+            </div>
+
+            <!-- Stablecoins -->
+            <div class="asset-card p-4 rounded-2xl flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-green-500/10 rounded-full flex items-center justify-center text-green-500 font-bold">$</div>
+                    <div>
+                        <p class="text-sm font-bold">USDT <span class="text-[10px] text-gray-500 font-normal ml-1">Multi-Chain</span></p>
+                    </div>
+                </div>
+                <p class="text-sm font-mono font-bold">0.00</p>
+            </div>
+
+            <div class="asset-card p-4 rounded-2xl flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-blue-400/10 rounded-full flex items-center justify-center text-blue-400 font-bold">$</div>
+                    <div>
+                        <p class="text-sm font-bold">USDC <span class="text-[10px] text-gray-500 font-normal ml-1">Multi-Chain</span></p>
+                    </div>
+                </div>
+                <p class="text-sm font-mono font-bold">0.00</p>
             </div>
         </div>
 
-        <!-- Quick Stats/Info -->
-        <div class="space-y-4">
-            <h4 class="text-xs font-bold text-gray-500 uppercase tracking-widest ml-1">Account Overview</h4>
-            
-            <div class="glass-panel p-5 flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <div class="w-10 h-10 rounded-xl bg-sky-500/10 flex items-center justify-center text-sky-400">
-                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                    </div>
-                    <div>
-                        <p class="text-sm font-bold">Transaction Speed</p>
-                        <p class="text-[10px] text-gray-500">Instant Delivery Enabled</p>
-                    </div>
-                </div>
-                <span class="text-sky-400 font-bold text-xs">Fast</span>
-            </div>
-
-            <div class="glass-panel p-5 flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <div class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400">
-                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-7.618 3.037A11.484 11.484 0 0012 21a11.484 11.484 0 007.618-15.016z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                    </div>
-                    <div>
-                        <p class="text-sm font-bold">Wallet Security</p>
-                        <p class="text-[10px] text-gray-500">BEP-20 Secured</p>
-                    </div>
-                </div>
-                <span class="text-purple-400 font-bold text-xs">High</span>
-            </div>
+        <div class="grid grid-cols-2 gap-4">
+            <a href="deposit.html" class="bg-white/5 border border-white/10 text-center py-4 rounded-2xl font-bold text-sm hover:bg-white/10 transition-all">Deposit</a>
+            <a href="buy-data.html" class="bg-sky-500 text-center py-4 rounded-2xl font-bold text-sm hover:bg-sky-400 transition-all shadow-lg shadow-sky-500/20">Buy Data</a>
         </div>
     </div>
-
-    <!-- Firebase Script Logic -->
-    <script type="module">
-        import { auth, db } from './firebase-config.js';
-        import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        import { doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-        document.getElementById('logout-btn').onclick = () => signOut(auth).then(() => location.href='index.html');
-
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                document.getElementById('display-email').innerText = user.email;
-                onSnapshot(doc(db, "users", user.uid), (docSnap) => {
-                    if (docSnap.exists()) {
-                        const data = docSnap.data();
-                        const name = data.username || "User";
-                        document.getElementById('display-username').innerText = name;
-                        document.getElementById('user-initial').innerText = name.charAt(0).toUpperCase();
-                        document.getElementById('user-balance').innerText = `${parseFloat(data.balance || 0).toFixed(2)} USDT`;
-                    }
-                });
-            } else {
-                window.location.href = 'auth.html';
-            }
-        });
-    </script>
 </body>
 </html>
