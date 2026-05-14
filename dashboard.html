@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #050810; }
-        .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 24px; }
         .asset-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.3s; }
         .asset-card:hover { background: rgba(14, 165, 233, 0.05); border-color: rgba(14, 165, 233, 0.2); }
         .text-subtle { color: #64748b; }
@@ -17,7 +16,7 @@
 <body class="text-white min-h-screen pb-10">
     <div class="max-w-xl mx-auto px-6">
         <header class="flex justify-between items-center py-8">
-            <h1 class="text-xl font-extrabold tracking-tight italic">Crypto2<span class="text-sky-400">Data</span></h1>
+            <h1 class="text-xl font-extrabold tracking-tight italic">Crypto<span class="text-sky-400">2Data</span></h1>
             <div class="flex gap-3">
                 <button onclick="logoutUser()" class="bg-white/5 border border-white/10 p-2 rounded-xl hover:bg-red-500/20 hover:border-red-500/50 transition-all">
                     <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" class="text-gray-400"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
@@ -48,16 +47,29 @@
                         <p class="text-sm font-bold">ETH <span class="text-[10px] text-gray-500 font-normal ml-1">Mainnet</span></p>
                     </div>
                 </div>
-                <p class="text-sm font-mono font-bold">0.00</p>
+                <p class="text-sm font-mono font-bold text-subtle">0.00</p>
             </div>
- <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400 font-bold">Ξ</div>
+
+            <div class="asset-card p-4 rounded-2xl flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-sky-400/10 rounded-full flex items-center justify-center text-sky-300 font-bold">Ξ</div>
+                    <div>
+                        <p class="text-sm font-bold">ETH <span class="text-[10px] text-gray-500 font-normal ml-1">Arbitrum</span></p>
+                    </div>
+                </div>
+                <p class="text-sm font-mono font-bold text-subtle">0.00</p>
+            </div>
+
+            <div class="asset-card p-4 rounded-2xl flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-blue-600/10 rounded-full flex items-center justify-center text-blue-500 font-bold">Ξ</div>
                     <div>
                         <p class="text-sm font-bold">ETH <span class="text-[10px] text-gray-500 font-normal ml-1">Base</span></p>
                     </div>
                 </div>
-                <p class="text-sm font-mono font-bold">0.00</p>
+                <p class="text-sm font-mono font-bold text-subtle">0.00</p>
             </div>
+
             <div class="asset-card p-4 rounded-2xl flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 bg-green-500/10 rounded-full flex items-center justify-center text-green-500 font-bold">$</div>
@@ -65,7 +77,7 @@
                         <p class="text-sm font-bold">USDT <span class="text-[10px] text-gray-500 font-normal ml-1">Multi-Chain</span></p>
                     </div>
                 </div>
-                <p class="text-sm font-mono font-bold">0.00</p>
+                <p class="text-sm font-mono font-bold text-subtle">0.00</p>
             </div>
 
             <div class="asset-card p-4 rounded-2xl flex justify-between items-center">
@@ -75,7 +87,7 @@
                         <p class="text-sm font-bold">USDC <span class="text-[10px] text-gray-500 font-normal ml-1">Multi-Chain</span></p>
                     </div>
                 </div>
-                <p class="text-sm font-mono font-bold">0.00</p>
+                <p class="text-sm font-mono font-bold text-subtle">0.00</p>
             </div>
         </div>
 
@@ -92,19 +104,15 @@
         const userNameDisplay = document.getElementById('user-name');
         const userEmailDisplay = document.getElementById('user-email');
 
-        // Handle User Authentication State
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                // Set name and email from Google account
                 userNameDisplay.textContent = user.displayName || "Crypto User";
                 userEmailDisplay.textContent = user.email;
             } else {
-                // Redirect to login if not authenticated
                 window.location.href = 'auth.html';
             }
         });
 
-        // Global Logout Function
         window.logoutUser = async () => {
             try {
                 await signOut(auth);
