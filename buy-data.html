@@ -31,75 +31,104 @@
 <body class="text-white min-h-screen flex items-center justify-center p-6 pb-12">
 
     <div class="max-w-md w-full">
-        <!-- Navigation -->
         <a href="dashboard.html" class="flex items-center gap-2 text-gray-500 hover:text-sky-400 transition-all mb-8 group">
             <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" class="group-hover:-translate-x-1 transition-transform"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
             <span class="text-sm font-bold">Back to Dashboard</span>
         </a>
 
-        <!-- Main Form Panel -->
         <div class="glass-panel p-8 relative overflow-hidden">
             <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-sky-500 to-transparent opacity-50"></div>
             
             <h2 class="text-2xl font-black mb-6 tracking-tight">Purchase Data</h2>
             
             <form id="purchase-form" class="space-y-6">
-                <!-- Network Selection -->
                 <div>
                     <label class="text-[10px] text-gray-500 font-bold uppercase tracking-widest block mb-2 ml-1">Network Provider</label>
                     <select id="network" class="w-full p-4 rounded-2xl appearance-none cursor-pointer" required>
                         <option value="" disabled selected>Select Provider</option>
                         <option value="mtn">MTN Nigeria</option>
                         <option value="airtel">Airtel Nigeria</option>
-                        <option value="glo">Glo</option>
+                        <option value="glo">Glo Nigeria</option>
                         <option value="9mobile">9mobile</option>
                     </select>
                 </div>
 
-                <!-- Data Plan Selection -->
                 <div>
                     <label class="text-[10px] text-gray-500 font-bold uppercase tracking-widest block mb-2 ml-1">Choose Data Bundle</label>
-                    <select id="plan" class="w-full p-4 rounded-2xl appearance-none cursor-pointer" required>
-                        <option value="" disabled selected>Select Plan</option>
-                        <option value="0.25">500MB — 0.25 USDT</option>
-                        <option value="0.50">1GB — 0.50 USDT</option>
-                        <option value="2.40">5GB — 2.40 USDT</option>
-                        <option value="4.50">10GB — 4.50 USDT</option>
+                    <select id="plan" class="w-full p-4 rounded-2xl appearance-none cursor-pointer" required disabled>
+                        <option value="" disabled selected>Select Provider first</option>
                     </select>
                 </div>
 
-                <!-- Phone Number -->
                 <div>
                     <label class="text-[10px] text-gray-500 font-bold uppercase tracking-widest block mb-2 ml-1">Recipient Number</label>
                     <input type="tel" id="phone" placeholder="0803 000 0000" class="w-full p-4 rounded-2xl" required>
                     <p class="text-[10px] text-gray-600 mt-2 ml-1 italic">Double-check the number before confirming.</p>
                 </div>
 
-                <!-- Action Button -->
                 <button type="submit" class="w-full bg-sky-500 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-sky-400 transition-all shadow-lg shadow-sky-500/20 active:scale-[0.98]">
                     Purchase with Crypto
                 </button>
             </form>
         </div>
 
-        <!-- Security Footer -->
         <div class="mt-8 flex items-center justify-center gap-2 text-gray-600">
             <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
             <span class="text-[10px] font-bold uppercase tracking-tighter">Secure Crypto-to-Data Transaction</span>
         </div>
     </div>
 
-    <!-- Confirmation Script Logic -->
     <script type="module">
         import { auth, db } from './firebase-config.js';
         import { doc, getDoc, updateDoc, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+        // Bundle Data from image_68bb71.png
+        const bundles = {
+            mtn: [
+                { label: "8.0GB SME — 0.50 USDT", price: 0.50 },
+                { label: "16.0GB SME — 1.00 USDT", price: 1.00 },
+                { label: "40.0GB SME — 3.00 USDT", price: 3.00 },
+                { label: "100.0GB SME — 7.50 USDT", price: 7.50 }
+            ],
+            airtel: [
+                { label: "7.5GB Gift — 0.50 USDT", price: 0.50 },
+                { label: "14.0GB Gift — 1.20 USDT", price: 1.20 },
+                { label: "30.0GB Corp — 2.50 USDT", price: 2.50 },
+                { label: "50.0GB Corp — 4.60 USDT", price: 4.60 }
+            ],
+            glo: [
+                { label: "10.0GB CG — 0.75 USDT", price: 0.75 },
+                { label: "100.0GB CG — 6.00 USDT", price: 6.00 }
+            ],
+            "9mobile": [
+                { label: "1.0GB — 0.40 USDT", price: 0.40 },
+                { label: "5.0GB — 1.80 USDT", price: 1.80 }
+            ]
+        };
+
+        const networkSelect = document.getElementById('network');
+        const planSelect = document.getElementById('plan');
         const form = document.getElementById('purchase-form');
 
+        // Handle Dynamic Plan Loading
+        networkSelect.addEventListener('change', () => {
+            const selectedNetwork = networkSelect.value;
+            planSelect.innerHTML = '<option value="" disabled selected>Select Plan</option>';
+            planSelect.disabled = false;
+
+            bundles[selectedNetwork].forEach(bundle => {
+                const opt = document.createElement('option');
+                opt.value = bundle.price;
+                opt.textContent = bundle.label;
+                planSelect.appendChild(opt);
+            });
+        });
+
+        // Handle Submission
         form.onsubmit = async (e) => {
             e.preventDefault();
-            const network = document.getElementById('network').value;
-            const planPrice = parseFloat(document.getElementById('plan').value);
+            const network = networkSelect.value;
+            const planPrice = parseFloat(planSelect.value);
             const phone = document.getElementById('phone').value;
             const user = auth.currentUser;
 
@@ -113,30 +142,24 @@
                     const currentBalance = userSnap.data().balance || 0;
 
                     if (currentBalance < planPrice) {
-                        return alert("Insufficient USDT balance. Please deposit funds.");
+                        return alert("Insufficient balance. Please deposit funds.");
                     }
 
-                    // 1. Deduct Balance
-                    await updateDoc(userRef, {
-                        balance: currentBalance - planPrice
-                    });
-
-                    // 2. Log Transaction
+                    await updateDoc(userRef, { balance: currentBalance - planPrice });
                     await addDoc(collection(db, "transactions"), {
                         userId: user.uid,
                         type: "data_purchase",
-                        network: network,
+                        network,
                         phoneNumber: phone,
                         amount: planPrice,
                         timestamp: serverTimestamp(),
                         status: "pending"
                     });
 
-                    alert(`Success! Your request for ${network.toUpperCase()} data to ${phone} is being processed.`);
+                    alert(`Success! Your request for ${network.toUpperCase()} data is being processed.`);
                     window.location.href = 'dashboard.html';
                 }
             } catch (err) {
-                console.error(err);
                 alert("Transaction failed: " + err.message);
             }
         };
