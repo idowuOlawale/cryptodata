@@ -3,179 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>crypto2data | Nigeria's #1 Crypto-to-Data Portal</title>
+    <title>Crypto2Data | Pay with USDT</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #050810; color: white; }
-        .hero-glow { background: radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.1) 0%, rgba(5, 8, 16, 0) 70%); }
-        .nav-glass { background: rgba(5, 8, 16, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .hero-glow { background: radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.12) 0%, rgba(5, 8, 16, 0) 70%); }
+        .glass-nav { background: rgba(5, 8, 16, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         .data-card { 
-            background: rgba(255, 255, 255, 0.03); 
-            border: 1px solid rgba(255, 255, 255, 0.08); 
-            border-radius: 32px; 
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.02); 
+            border: 1px solid rgba(255, 255, 255, 0.07); 
+            border-radius: 28px; 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .data-card:hover { 
-            background: rgba(255, 255, 255, 0.05); 
-            border-color: rgba(14, 165, 233, 0.4);
-            transform: translateY(-8px);
+            background: rgba(14, 165, 233, 0.04); 
+            border-color: rgba(14, 165, 233, 0.5);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
-<body class="hero-glow">
-    <!-- Navbar (Dashboard Design) -->
-    <nav class="fixed top-0 w-full z-50 nav-glass px-6 py-4">
+<body class="hero-glow min-h-screen">
+
+    <!-- Navbar (Dashboard Sync) -->
+    <nav class="fixed top-0 w-full z-50 glass-nav px-6 py-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-2">
-                <div class="w-8 h-8 bg-sky-500 rounded-lg flex items-center justify-center font-bold text-white shadow-lg shadow-sky-500/20">C</div>
-                <span class="text-xl font-extrabold tracking-tighter">crypto<span class="text-sky-400">2</span>data</span>
+                <div class="w-9 h-9 bg-sky-500 rounded-xl flex items-center justify-center font-bold text-white shadow-lg shadow-sky-500/30">C</div>
+                <span class="text-2xl font-black tracking-tighter">Crypto<span class="text-sky-500">2</span>Data</span>
             </div>
             <div class="flex items-center gap-6">
-                <a href="auth.html" class="text-sm font-bold text-gray-400 hover:text-white transition">Login</a>
-                <a href="auth.html" class="bg-white text-black px-6 py-2 rounded-xl font-bold text-sm hover:bg-sky-400 hover:text-white transition-all shadow-lg shadow-white/5">Get Started</a>
+                <a href="auth.html" class="text-sm font-bold text-gray-400 hover:text-white transition">Sign In</a>
+                <a href="auth.html" class="bg-white text-black px-6 py-2.5 rounded-xl font-bold text-sm hover:bg-sky-500 hover:text-white transition-all">Get Started</a>
             </div>
         </div>
     </nav>
 
-    <main class="pt-32 pb-20">
+    <main class="pt-32 pb-24 px-6">
         <!-- Hero Section -->
-        <section class="max-w-7xl mx-auto px-6 text-center mb-24">
-            <div class="inline-flex items-center gap-2 bg-sky-500/10 text-sky-400 px-4 py-1.5 rounded-full text-xs font-bold mb-6 border border-sky-500/20">
+        <header class="max-w-4xl mx-auto text-center mb-24">
+            <div class="inline-flex items-center gap-2 bg-sky-500/10 text-sky-400 px-4 py-1.5 rounded-full text-[10px] font-black tracking-widest mb-8 border border-sky-500/20 uppercase">
                 <span class="relative flex h-2 w-2">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
                 </span>
-                SECURE WEB3 PAYMENTS LIVE
+                Blockchain Verified
             </div>
-            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight leading-[1.1]">
-                Cheap Data. <br> Paid in <span class="text-sky-500">Crypto.</span>
+            <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tight leading-none">
+                Data top-ups <br>via <span class="text-sky-500 underline decoration-sky-500/30">Crypto.</span>
             </h1>
-            <p class="text-gray-500 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-                Empowering Nigerians to convert USDT and USDC into high-speed internet data instantly. No bank delays, no high fees.
+            <p class="text-gray-500 text-lg max-w-xl mx-auto leading-relaxed">
+                Connect your wallet or send USDT to get instant data delivery for MTN and Airtel.
             </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="auth.html" class="bg-sky-500 text-white px-10 py-4 rounded-2xl font-bold text-lg shadow-xl shadow-sky-500/20 hover:scale-105 transition">Buy Data Now</a>
-            </div>
-        </section>
+        </header>
 
-        <!-- Data Bundles Section -->
-        <section class="max-w-6xl mx-auto px-6 mb-24">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-extrabold text-white">Today's Hot Bundles</h2>
-                <p class="text-gray-500">Verified MTN & Airtel rates direct from the blockchain</p>
-            </div>
-
-            <!-- Top Row: MTN -->
-            <div class="mb-12">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center text-[8px] font-black text-black">MTN</div>
-                    <h3 class="text-sm font-black uppercase tracking-[0.3em] text-gray-500">MTN Nigeria</h3>
+        <!-- Bundles Grid -->
+        <section class="max-w-6xl mx-auto">
+            
+            <!-- Row 1: MTN -->
+            <div class="mb-16">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="w-8 h-8 bg-yellow-400 rounded-lg flex items-center justify-center text-[10px] font-black text-black">MTN</div>
+                    <h3 class="text-xs font-black uppercase tracking-[0.4em] text-gray-600">MTN Network Bundles</h3>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="data-card p-8 group">
-                        <div class="mb-8">
-                            <h4 class="text-4xl font-black mb-1">50GB</h4>
-                            <p class="text-gray-500 text-xs font-bold uppercase tracking-widest italic">30 Days Validity</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Bundle 1 -->
+                    <div class="data-card p-10 group">
+                        <div class="mb-12">
+                            <h4 class="text-5xl font-black mb-2 italic">50GB</h4>
+                            <p class="text-gray-500 text-[10px] font-black uppercase tracking-widest">30 Days • High Speed</p>
                         </div>
                         <div class="flex items-center justify-between">
-                            <span class="text-2xl font-black text-sky-400">4.50 <span class="text-xs font-normal text-gray-500 uppercase">USDT</span></span>
-                            <a href="auth.html" class="p-3 bg-white/5 rounded-xl group-hover:bg-sky-500 transition-colors"><i data-lucide="arrow-right"></i></a>
+                            <span class="text-3xl font-black text-sky-400">4.50 <span class="text-xs font-medium text-gray-600">USDT</span></span>
+                            <a href="auth.html" class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center group-hover:bg-sky-500 group-hover:text-white transition-all">
+                                <i data-lucide="arrow-right"></i>
+                            </a>
                         </div>
                     </div>
-                    <div class="data-card p-8 border-sky-500/30 bg-sky-500/5 group relative">
-                        <div class="absolute top-0 right-0 bg-sky-500 text-[8px] font-black px-4 py-1 rounded-bl-xl">POPULAR</div>
-                        <div class="mb-8">
-                            <h4 class="text-4xl font-black mb-1">100GB</h4>
-                            <p class="text-gray-500 text-xs font-bold uppercase tracking-widest italic">30 Days Validity</p>
+                    <!-- Bundle 2 (Featured) -->
+                    <div class="data-card p-10 group border-sky-500/40 bg-sky-500/[0.04] relative overflow-hidden">
+                        <div class="absolute -top-1 -right-1 bg-sky-500 text-[9px] font-black px-4 py-2 rounded-bl-2xl">BEST VALUE</div>
+                        <div class="mb-12">
+                            <h4 class="text-5xl font-black mb-2 italic">100GB</h4>
+                            <p class="text-gray-500 text-[10px] font-black uppercase tracking-widest">30 Days • Unlimited</p>
                         </div>
                         <div class="flex items-center justify-between">
-                            <span class="text-2xl font-black text-sky-400">8.50 <span class="text-xs font-normal text-gray-500 uppercase">USDT</span></span>
-                            <a href="auth.html" class="p-3 bg-sky-500 rounded-xl"><i data-lucide="zap"></i></a>
+                            <span class="text-3xl font-black text-sky-400">8.50 <span class="text-xs font-medium text-gray-600">USDT</span></span>
+                            <a href="auth.html" class="w-12 h-12 bg-sky-500 rounded-2xl flex items-center justify-center shadow-lg shadow-sky-500/20">
+                                <i data-lucide="zap" class="fill-current"></i>
+                            </a>
                         </div>
                     </div>
-                    <div class="data-card p-8 group">
-                        <div class="mb-8">
-                            <h4 class="text-4xl font-black mb-1">200GB</h4>
-                            <p class="text-gray-500 text-xs font-bold uppercase tracking-widest italic">6 Months Validity</p>
+                    <!-- Bundle 3 -->
+                    <div class="data-card p-10 group">
+                        <div class="mb-12">
+                            <h4 class="text-5xl font-black mb-2 italic text-gray-300">200GB</h4>
+                            <p class="text-gray-500 text-[10px] font-black uppercase tracking-widest">180 Days • Family Plan</p>
                         </div>
                         <div class="flex items-center justify-between">
-                            <span class="text-2xl font-black text-sky-400">15.50 <span class="text-xs font-normal text-gray-500 uppercase">USDT</span></span>
-                            <a href="auth.html" class="p-3 bg-white/5 rounded-xl group-hover:bg-sky-500 transition-colors"><i data-lucide="arrow-right"></i></a>
+                            <span class="text-3xl font-black text-sky-400">15.50 <span class="text-xs font-medium text-gray-600">USDT</span></span>
+                            <a href="auth.html" class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center group-hover:bg-sky-500 transition-all">
+                                <i data-lucide="arrow-right"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Bottom Row: Airtel -->
+            <!-- Row 2: Airtel -->
             <div>
-                <div class="flex items-center gap-3 mb-6 mt-12">
-                    <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center text-[8px] font-black text-white">AIR</div>
-                    <h3 class="text-sm font-black uppercase tracking-[0.3em] text-gray-500">Airtel Nigeria</h3>
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center text-[10px] font-black text-white">AIR</div>
+                    <h3 class="text-xs font-black uppercase tracking-[0.4em] text-gray-600">Airtel Network Bundles</h3>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="data-card p-8 group">
-                        <div class="mb-8">
-                            <h4 class="text-4xl font-black mb-1">50GB</h4>
-                            <p class="text-gray-500 text-xs font-bold uppercase tracking-widest italic">30 Days Validity</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Bundle 1 -->
+                    <div class="data-card p-10 group">
+                        <div class="mb-12">
+                            <h4 class="text-5xl font-black mb-2 italic">50GB</h4>
+                            <p class="text-gray-500 text-[10px] font-black uppercase tracking-widest">30 Days • 5G Enabled</p>
                         </div>
                         <div class="flex items-center justify-between">
-                            <span class="text-2xl font-black text-sky-400">4.50 <span class="text-xs font-normal text-gray-500 uppercase">USDT</span></span>
-                            <a href="auth.html" class="p-3 bg-white/5 rounded-xl group-hover:bg-sky-500 transition-colors"><i data-lucide="arrow-right"></i></a>
+                            <span class="text-3xl font-black text-sky-400">4.50 <span class="text-xs font-medium text-gray-600">USDT</span></span>
+                            <a href="auth.html" class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center group-hover:bg-sky-500 transition-all">
+                                <i data-lucide="arrow-right"></i>
+                            </a>
                         </div>
                     </div>
-                    <div class="data-card p-8 group">
-                        <div class="mb-8">
-                            <h4 class="text-4xl font-black mb-1">100GB</h4>
-                            <p class="text-gray-500 text-xs font-bold uppercase tracking-widest italic">30 Days Validity</p>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-2xl font-black text-sky-400">8.50 <span class="text-xs font-normal text-gray-500 uppercase">USDT</span></span>
-                            <a href="auth.html" class="p-3 bg-white/5 rounded-xl group-hover:bg-sky-500 transition-colors"><i data-lucide="arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="data-card p-8 group">
-                        <div class="mb-8">
-                            <h4 class="text-4xl font-black mb-1">200GB</h4>
-                            <p class="text-gray-500 text-xs font-bold uppercase tracking-widest italic">6 Months Validity</p>
+                    <!-- Bundle 2 -->
+                    <div class="data-card p-10 group">
+                        <div class="mb-12">
+                            <h4 class="text-5xl font-black mb-2 italic">100GB</h4>
+                            <p class="text-gray-500 text-[10px] font-black uppercase tracking-widest">30 Days • 5G Enabled</p>
                         </div>
                         <div class="flex items-center justify-between">
-                            <span class="text-2xl font-black text-sky-400">15.50 <span class="text-xs font-normal text-gray-500 uppercase">USDT</span></span>
-                            <a href="auth.html" class="p-3 bg-white/5 rounded-xl group-hover:bg-sky-500 transition-colors"><i data-lucide="arrow-right"></i></a>
+                            <span class="text-3xl font-black text-sky-400">8.50 <span class="text-xs font-medium text-gray-600">USDT</span></span>
+                            <a href="auth.html" class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center group-hover:bg-sky-500 transition-all">
+                                <i data-lucide="arrow-right"></i>
+                            </a>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Trust Section -->
-        <section class="max-w-7xl mx-auto px-6 py-20 bg-white/[0.02] border border-white/5 rounded-[48px] text-white">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left px-10">
-                <div>
-                    <div class="w-12 h-12 bg-sky-500/10 text-sky-400 rounded-xl flex items-center justify-center mb-6 mx-auto md:mx-0 border border-sky-500/20">
-                        <i data-lucide="shield"></i>
+                    <!-- Bundle 3 -->
+                    <div class="data-card p-10 group">
+                        <div class="mb-12">
+                            <h4 class="text-5xl font-black mb-2 italic">200GB</h4>
+                            <p class="text-gray-500 text-[10px] font-black uppercase tracking-widest">180 Days • 5G Enabled</p>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-3xl font-black text-sky-400">15.50 <span class="text-xs font-medium text-gray-600">USDT</span></span>
+                            <a href="auth.html" class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center group-hover:bg-sky-500 transition-all">
+                                <i data-lucide="arrow-right"></i>
+                            </a>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Military-Grade Security</h3>
-                    <p class="text-gray-500 leading-relaxed">Your transactions are secured by blockchain technology and manual verification protocols.</p>
-                </div>
-                <div>
-                    <div class="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-xl flex items-center justify-center mb-6 mx-auto md:mx-0 border border-emerald-500/20">
-                        <i data-lucide="zap"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Instant Top-up</h3>
-                    <p class="text-gray-500 leading-relaxed">Once your crypto deposit is confirmed, data is sent to your phone number within 60 seconds.</p>
-                </div>
-                <div>
-                    <div class="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-xl flex items-center justify-center mb-6 mx-auto md:mx-0 border border-amber-500/20">
-                        <i data-lucide="headset"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">24/7 Priority Support</h3>
-                    <p class="text-gray-500 leading-relaxed">Having issues? Our Nigerian-based support team is available around the clock via WhatsApp.</p>
                 </div>
             </div>
         </section>
     </main>
+
+    <!-- Footer Stats -->
+    <footer class="max-w-6xl mx-auto px-6 border-t border-white/5 py-12 flex flex-col md:flex-row justify-between items-center gap-8">
+        <div class="flex items-center gap-6 opacity-30">
+            <span class="text-xs font-black tracking-widest">SECURE PAYMENTS</span>
+            <span class="text-xs font-black tracking-widest">INSTANT TOPUP</span>
+            <span class="text-xs font-black tracking-widest">24/7 SUPPORT</span>
+        </div>
+        <p class="text-gray-600 text-xs">© 2026 Crypto2Data. All rights reserved.</p>
+    </footer>
 
     <script>lucide.createIcons();</script>
 </body>
