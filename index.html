@@ -3,150 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CryptoData | Nigeria's #1 Crypto-to-Data Portal</title>
+    <title>CryptoData | Instant Crypto-to-Data</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #F8FAFC; }
-        .hero-gradient { background: radial-gradient(circle at top right, #e0f2fe 0%, #f8fafc 50%); }
-        .nav-glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); }
-        .data-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .data-card:hover { transform: translateY(-10px); }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #050810; color: white; }
+        .glass-nav { background: rgba(5, 8, 16, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .hero-glow { background: radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.1) 0%, rgba(5, 8, 16, 0) 70%); }
+        .data-card { 
+            background: rgba(255, 255, 255, 0.03); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            border-radius: 32px; 
+            transition: all 0.3s ease;
+        }
+        .data-card:hover { 
+            background: rgba(255, 255, 255, 0.05); 
+            border-color: rgba(14, 165, 233, 0.4);
+            transform: translateY(-8px);
+        }
     </style>
 </head>
-<body class="hero-gradient">
-    <!-- Navbar -->
-    <nav class="fixed top-0 w-full z-50 nav-glass px-6 py-4">
+<body class="hero-glow">
+
+    <!-- Dashboard Style Navbar -->
+    <nav class="fixed top-0 w-full z-50 glass-nav px-6 py-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-2">
-                <div class="w-8 h-8 bg-sky-500 rounded-lg flex items-center justify-center font-bold text-white shadow-lg shadow-sky-200">C</div>
-                <span class="text-xl font-extrabold tracking-tight text-slate-900">CryptoData</span>
+                <div class="w-8 h-8 bg-sky-500 rounded-lg flex items-center justify-center font-bold text-white shadow-lg shadow-sky-500/20">C</div>
+                <span class="text-xl font-extrabold tracking-tighter">Crypto<span class="text-sky-400">Data</span></span>
             </div>
             <div class="flex items-center gap-6">
-                <a href="auth.html" class="text-sm font-bold text-slate-600 hover:text-sky-500 transition">Login</a>
-                <a href="auth.html" class="bg-slate-900 text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-sky-500 transition-all shadow-lg">Get Started</a>
+                <a href="auth.html" class="text-sm font-bold text-gray-400 hover:text-white transition">Login</a>
+                <a href="auth.html" class="bg-white text-black px-6 py-2 rounded-xl font-bold text-sm hover:bg-sky-400 hover:text-white transition-all">Get Started</a>
             </div>
         </div>
     </nav>
 
-    <main class="pt-32 pb-20">
-        <!-- Hero Section -->
-        <section class="max-w-7xl mx-auto px-6 text-center mb-24">
-            <div class="inline-flex items-center gap-2 bg-sky-50 text-sky-600 px-4 py-1.5 rounded-full text-xs font-bold mb-6">
-                <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
-                </span>
-                SECURE WEB3 PAYMENTS LIVE
-            </div>
-            <h1 class="text-5xl md:text-7xl font-extrabold text-slate-900 mb-6 tracking-tight leading-[1.1]">
-                Your Crypto, <br> Your <span class="text-sky-500">Internet Connection.</span>
+    <main class="pt-32 pb-20 px-6">
+        <!-- Hero Header -->
+        <header class="max-w-4xl mx-auto text-center mb-20">
+            <h1 class="text-5xl md:text-6xl font-black mb-6 tracking-tight leading-tight">
+                Top up in <span class="text-sky-500">Seconds.</span>
             </h1>
-            <p class="text-slate-500 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-                The fastest bridge between your digital assets and mobile connectivity. Buy high-speed MTN and Airtel bundles instantly with USDT or ETH.
+            <p class="text-gray-500 text-lg max-w-xl mx-auto">
+                Select a bundle, enter your number, and pay with USDT. No banks, no delays.
             </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="auth.html" class="bg-sky-500 text-white px-10 py-4 rounded-2xl font-bold text-lg shadow-xl shadow-sky-200 hover:bg-sky-600 transition">Start Browsing</a>
+        </header>
+
+        <!-- Data Bundle Grid (6 Cards) -->
+        <section class="max-w-6xl mx-auto">
+            
+            <!-- MTN Row (Top) -->
+            <div class="mb-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center text-[8px] font-black text-black">MTN</div>
+                    <h3 class="text-sm font-black uppercase tracking-[0.3em] text-gray-500">MTN Nigeria Bundles</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- 50GB MTN -->
+                    <div class="data-card p-8 relative overflow-hidden group">
+                        <div class="mb-10">
+                            <h4 class="text-4xl font-black mb-1">50GB</h4>
+                            <p class="text-gray-500 text-xs font-bold uppercase tracking-widest italic">30 Days Validity</p>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-black text-sky-400">4.50 <span class="text-xs font-normal text-gray-500">USDT</span></span>
+                            <a href="auth.html" class="p-3 bg-white/5 rounded-xl group-hover:bg-sky-500 transition-colors"><i data-lucide="arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- 100GB MTN -->
+                    <div class="data-card p-8 border-sky-500/30 bg-sky-500/5 relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 bg-sky-500 text-[8px] font-black px-4 py-1 rounded-bl-xl">POPULAR</div>
+                        <div class="mb-10">
+                            <h4 class="text-4xl font-black mb-1">100GB</h4>
+                            <p class="text-gray-500 text-xs font-bold uppercase tracking-widest italic">30 Days Validity</p>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-black text-sky-400">8.50 <span class="text-xs font-normal text-gray-500">USDT</span></span>
+                            <a href="auth.html" class="p-3 bg-sky-500 rounded-xl"><i data-lucide="arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- 200GB MTN -->
+                    <div class="data-card p-8 relative overflow-hidden group">
+                        <div class="mb-10">
+                            <h4 class="text-4xl font-black mb-1">200GB</h4>
+                            <p class="text-gray-500 text-xs font-bold uppercase tracking-widest italic">6 Months Validity</p>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-black text-sky-400">15.50 <span class="text-xs font-normal text-gray-500">USDT</span></span>
+                            <a href="auth.html" class="p-3 bg-white/5 rounded-xl group-hover:bg-sky-500 transition-colors"><i data-lucide="arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Airtel Row (Bottom) -->
+            <div>
+                <div class="flex items-center gap-3 mb-6 mt-12">
+                    <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center text-[8px] font-black text-white">AIR</div>
+                    <h3 class="text-sm font-black uppercase tracking-[0.3em] text-gray-500">Airtel Nigeria Bundles</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- 50GB Airtel -->
+                    <div class="data-card p-8 relative overflow-hidden group">
+                        <div class="mb-10">
+                            <h4 class="text-4xl font-black mb-1">50GB</h4>
+                            <p class="text-gray-500 text-xs font-bold uppercase tracking-widest italic">30 Days Validity</p>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-black text-sky-400">4.50 <span class="text-xs font-normal text-gray-500">USDT</span></span>
+                            <a href="auth.html" class="p-3 bg-white/5 rounded-xl group-hover:bg-sky-500 transition-colors"><i data-lucide="arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- 100GB Airtel -->
+                    <div class="data-card p-8 relative overflow-hidden group">
+                        <div class="mb-10">
+                            <h4 class="text-4xl font-black mb-1">100GB</h4>
+                            <p class="text-gray-500 text-xs font-bold uppercase tracking-widest italic">30 Days Validity</p>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-black text-sky-400">8.50 <span class="text-xs font-normal text-gray-500">USDT</span></span>
+                            <a href="auth.html" class="p-3 bg-white/5 rounded-xl group-hover:bg-sky-500 transition-colors"><i data-lucide="arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- 200GB Airtel -->
+                    <div class="data-card p-8 relative overflow-hidden group">
+                        <div class="mb-10">
+                            <h4 class="text-4xl font-black mb-1">200GB</h4>
+                            <p class="text-gray-500 text-xs font-bold uppercase tracking-widest italic">6 Months Validity</p>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-black text-sky-400">15.50 <span class="text-xs font-normal text-gray-500">USDT</span></span>
+                            <a href="auth.html" class="p-3 bg-white/5 rounded-xl group-hover:bg-sky-500 transition-colors"><i data-lucide="arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Main Data Content (Reflecting image_87c1fc.png) -->
-        <section class="max-w-7xl mx-auto px-6 mb-24">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-extrabold text-slate-900">Official Data Bundles</h2>
-                <p class="text-slate-500 mt-2">Verified MTN & Airtel rates direct from the blockchain</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- 50GB Card -->
-                <div class="bg-white p-10 rounded-[40px] border border-slate-100 data-card relative group shadow-sm hover:shadow-2xl">
-                    <div class="absolute top-8 right-8">
-                        <div class="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center font-black text-[10px] text-black shadow-md">MTN</div>
-                    </div>
-                    <div class="mb-12">
-                        <h4 class="text-5xl font-black text-slate-900 mb-2">50GB</h4>
-                        <p class="text-slate-400 font-bold uppercase tracking-widest text-xs italic">30 Days Validity</p>
-                    </div>
-                    <div class="flex items-end justify-between">
-                        <div>
-                            <p class="text-xs font-bold text-slate-300 uppercase tracking-tighter mb-1">Standard Rate</p>
-                            <span class="text-3xl font-black text-sky-500">4.50 <span class="text-sm font-medium">USDT</span></span>
-                        </div>
-                        <a href="auth.html" class="w-14 h-14 bg-slate-50 text-slate-900 rounded-2xl flex items-center justify-center group-hover:bg-sky-500 group-hover:text-white transition-all">
-                            <i data-lucide="shopping-cart"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- 100GB Card (Highlighted/Featured) -->
-                <div class="bg-white p-10 rounded-[40px] border-2 border-sky-400 data-card relative group shadow-2xl shadow-sky-100 scale-105 z-10">
-                    <div class="absolute top-8 right-8">
-                        <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center font-black text-[10px] text-white shadow-md">AIRTEL</div>
-                    </div>
-                    <div class="mb-12">
-                        <span class="bg-sky-500 text-white text-[10px] font-black px-4 py-1 rounded-full inline-block mb-4">BEST VALUE</span>
-                        <h4 class="text-5xl font-black text-slate-900 mb-2">100GB</h4>
-                        <p class="text-slate-400 font-bold uppercase tracking-widest text-xs italic">30 Days Validity</p>
-                    </div>
-                    <div class="flex items-end justify-between">
-                        <div>
-                            <p class="text-xs font-bold text-slate-300 uppercase tracking-tighter mb-1">Promo Rate</p>
-                            <span class="text-3xl font-black text-sky-500">8.50 <span class="text-sm font-medium">USDT</span></span>
-                        </div>
-                        <a href="auth.html" class="w-14 h-14 bg-sky-500 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-sky-200">
-                            <i data-lucide="zap"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- 200GB Card -->
-                <div class="bg-white p-10 rounded-[40px] border border-slate-100 data-card relative group shadow-sm hover:shadow-2xl">
-                    <div class="absolute top-8 right-8">
-                        <div class="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center font-black text-[10px] text-black shadow-md">MTN</div>
-                    </div>
-                    <div class="mb-12">
-                        <h4 class="text-5xl font-black text-slate-900 mb-2">200GB</h4>
-                        <p class="text-slate-400 font-bold uppercase tracking-widest text-xs italic">6 Months Validity</p>
-                    </div>
-                    <div class="flex items-end justify-between">
-                        <div>
-                            <p class="text-xs font-bold text-slate-300 uppercase tracking-tighter mb-1">Bulk Rate</p>
-                            <span class="text-3xl font-black text-sky-500">15.50 <span class="text-sm font-medium">USDT</span></span>
-                        </div>
-                        <a href="auth.html" class="w-14 h-14 bg-slate-50 text-slate-900 rounded-2xl flex items-center justify-center group-hover:bg-sky-500 group-hover:text-white transition-all">
-                            <i data-lucide="globe"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Trust Section -->
-        <section class="max-w-7xl mx-auto px-6 py-20 bg-slate-900 rounded-[48px] text-white">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 px-10 text-center md:text-left">
-                <div>
-                    <div class="w-12 h-12 bg-sky-500/20 text-sky-400 rounded-xl flex items-center justify-center mb-6 mx-auto md:mx-0">
-                        <i data-lucide="refresh-cw"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Automatic Sync</h3>
-                    <p class="text-slate-400">Our prices update in real-time based on the current USDT/Naira exchange rate.</p>
-                </div>
-                <div>
-                    <div class="w-12 h-12 bg-emerald-500/20 text-emerald-400 rounded-xl flex items-center justify-center mb-6 mx-auto md:mx-0">
-                        <i data-lucide="smartphone"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">No USSD Required</h3>
-                    <p class="text-slate-400">Simply enter your number and pay. We handle the technical delivery instantly.</p>
-                </div>
-                <div>
-                    <div class="w-12 h-12 bg-amber-500/20 text-amber-400 rounded-xl flex items-center justify-center mb-6 mx-auto md:mx-0">
-                        <i data-lucide="lock"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Secure Escrow</h3>
-                    <p class="text-slate-400">Your crypto is held securely until the data bundle is successfully delivered to your line.</p>
-                </div>
-            </div>
+        <!-- Trust Badges -->
+        <section class="max-w-6xl mx-auto mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 opacity-40">
+            <div class="text-center font-black text-xl italic tracking-tighter">SECURE WALLET</div>
+            <div class="text-center font-black text-xl italic tracking-tighter">MTN PARTNER</div>
+            <div class="text-center font-black text-xl italic tracking-tighter">AIRTEL 5G</div>
+            <div class="text-center font-black text-xl italic tracking-tighter">INSTANT SETTLE</div>
         </section>
     </main>
 
