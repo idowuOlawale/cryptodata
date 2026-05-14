@@ -3,68 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto2Data | Deposit USDT</title>
+    <title>Crypto2Data | Deposit</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #050810; }
         .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 32px; }
+        select { background: #0f172a !important; border: 1px solid rgba(255,255,255,0.1) !important; color: white !important; }
     </style>
 </head>
 <body class="text-white min-h-screen flex items-center justify-center p-6">
     <div class="max-w-md w-full">
-        <a href="dashboard.html" class="flex items-center gap-2 text-gray-500 hover:text-sky-400 transition-all mb-8 group">
-            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" class="group-hover:-translate-x-1 transition-transform"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-            <span class="text-sm font-bold">Back to Dashboard</span>
+        <a href="dashboard.html" class="flex items-center gap-2 text-gray-500 hover:text-sky-400 mb-8 font-bold text-sm">
+            ← Dashboard
         </a>
 
-        <div class="glass-panel p-8 text-center relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-sky-500 to-transparent"></div>
-            
-            <h2 class="text-2xl font-black mb-2">Deposit Funds</h2>
-            <p class="text-gray-500 text-xs uppercase tracking-widest font-bold mb-8">Network: BEP-20 (BSC)</p>
+        <div class="glass-panel p-8 text-center">
+            <h2 class="text-2xl font-black mb-6">Deposit Assets</h2>
 
-            <!-- QR Code Container -->
-            <div class="bg-white p-4 rounded-3xl inline-block shadow-2xl shadow-sky-500/10 mb-8">
+            <div class="mb-6">
+                <label class="text-[10px] text-gray-500 font-bold uppercase block mb-2 text-left ml-1">Select Asset & Network</label>
+                <select id="asset-select" class="w-full p-4 rounded-2xl outline-none">
+                    <optgroup label="Ethereum (ETH)">
+                        <option>ETH - Arbitrum One</option>
+                        <option>ETH - Mainnet</option>
+                        <option>ETH - Base</option>
+                    </optgroup>
+                    <optgroup label="Stables (USDT/USDC)">
+                        <option>USDT - BEP20 / Poly / Arb / Base</option>
+                        <option>USDC - BEP20 / Poly / Arb / Base</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="bg-white p-4 rounded-3xl inline-block mb-8">
                 <div id="qrcode"></div>
             </div>
 
-            <!-- Address Display -->
-            <div class="bg-black/40 p-4 rounded-2xl border border-white/5 mb-6 text-left relative group">
-                <p class="text-[10px] text-gray-600 font-bold uppercase mb-2">Your USDT Address</p>
-                <p id="wallet-address" class="text-[11px] font-mono text-sky-400 break-all leading-relaxed">0x66c8C3660D7fFf0cf3850Ff1D0Fc15B53e4c6887</p>
-                <button onclick="copyAddress()" class="absolute right-3 bottom-3 p-2 bg-sky-500/10 text-sky-400 rounded-lg hover:bg-sky-500 hover:text-white transition-all">
-                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                </button>
+            <div class="bg-black/40 p-4 rounded-2xl border border-white/5 mb-4 relative">
+                <p class="text-[9px] text-gray-600 font-bold uppercase mb-1 text-left">Your Deposit Address</p>
+                <p id="wallet-address" class="text-[10px] font-mono text-sky-400 break-all text-left">0x66c8C3660D7fFf0cf3850Ff1D0Fc15B53e4c6887</p>
+                <button onclick="copyAddress()" class="absolute right-3 top-1/2 -translate-y-1/2 text-sky-400 hover:text-white">Copy</button>
             </div>
 
-            <div class="p-4 bg-yellow-500/5 border border-yellow-500/10 rounded-2xl">
-                <p class="text-[10px] text-yellow-500/80 leading-relaxed">
-                    ⚠️ <b>Attention:</b> Send only <b>USDT (BEP-20)</b> to this address. Funds sent via other networks (TRC20/ERC20) will be permanently lost.
-                </p>
-            </div>
+            <p class="text-[10px] text-gray-500 italic">Funds will be credited after 2-3 network confirmations.</p>
         </div>
     </div>
 
     <script>
         const address = "0x66c8C3660D7fFf0cf3850Ff1D0Fc15B53e4c6887";
-        
-        // Generate QR Code
-        new QRCode(document.getElementById("qrcode"), {
-            text: address,
-            width: 160,
-            height: 160,
-            colorDark : "#000000",
-            colorLight : "#ffffff",
-            correctLevel : QRCode.CorrectLevel.H
-        });
-
-        // Copy Function
-        window.copyAddress = () => {
-            navigator.clipboard.writeText(address);
-            alert("Address copied to clipboard!");
-        };
+        new QRCode(document.getElementById("qrcode"), { text: address, width: 160, height: 160 });
+        window.copyAddress = () => { navigator.clipboard.writeText(address); alert("Address copied!"); };
     </script>
 </body>
 </html>
