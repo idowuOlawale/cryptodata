@@ -3,143 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CryptoData | Nigeria's #1 Crypto-to-Data Portal</title>
+    <title>Crypto2Data | Buy Data</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #F8FAFC; }
-        .hero-gradient { background: radial-gradient(circle at top right, #e0f2fe 0%, #f8fafc 50%); }
-        .nav-glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #050810; color: white; }
+        .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 32px; }
+        .bundle-card { 
+            background: rgba(255, 255, 255, 0.05); 
+            border: 2px solid transparent; 
+            border-radius: 24px; 
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .bundle-card:hover { border-color: #eab308; background: rgba(234, 179, 8, 0.05); }
+        .bundle-card.selected { border-color: #eab308; background: rgba(234, 179, 8, 0.1); transform: scale(1.02); }
+        input { background: rgba(255,255,255,0.05) !important; border: 1px solid rgba(255,255,255,0.1) !important; color: white !important; }
     </style>
 </head>
-<body class="hero-gradient">
-    <nav class="fixed top-0 w-full z-50 nav-glass px-6 py-4">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <div class="w-8 h-8 bg-sky-500 rounded-lg flex items-center justify-center font-bold text-white">C</div>
-                <span class="text-xl font-extrabold tracking-tight">CryptoData</span>
-            </div>
-            <div class="flex items-center gap-6">
-                <a href="auth.html" class="text-sm font-bold text-slate-600 hover:text-sky-500 transition">Login</a>
-                <a href="auth.html" class="bg-slate-900 text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-sky-500 transition-all">Get Started</a>
-            </div>
+<body class="min-h-screen pb-20 p-6">
+
+    <div class="max-w-4xl mx-auto">
+        <a href="dashboard.html" class="text-gray-500 hover:text-sky-400 mb-8 inline-block font-bold">← Back</a>
+        
+        <h2 class="text-3xl font-black mb-10">Select Your Bundle</h2>
+
+        <!-- Network Toggle -->
+        <div class="flex gap-4 mb-10">
+            <button onclick="switchNetwork('mtn')" id="btn-mtn" class="px-8 py-3 rounded-2xl font-bold bg-yellow-500 text-black border-2 border-yellow-500">MTN</button>
+            <button onclick="switchNetwork('airtel')" id="btn-airtel" class="px-8 py-3 rounded-2xl font-bold bg-white/5 border-2 border-white/10 hover:border-red-500 transition-all">Airtel</button>
         </div>
-    </nav>
 
-    <main class="pt-32 pb-20">
-        <!-- Hero Section -->
-        <section class="max-w-7xl mx-auto px-6 text-center mb-24">
-            <div class="inline-flex items-center gap-2 bg-sky-50 text-sky-600 px-4 py-1.5 rounded-full text-xs font-bold mb-6">
-                <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span></span>
-                LIVE IN NIGERIA
+        <!-- Bundle Grid (Based on image_87c1fc.png) -->
+        <div id="bundle-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <!-- Cards will be injected here by JavaScript -->
+        </div>
+
+        <!-- Phone Input & Purchase -->
+        <div class="glass-panel p-8 max-w-md mx-auto">
+            <div class="mb-6">
+                <label class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2 block">Recipient Phone Number</label>
+                <input type="tel" id="phone" placeholder="0803 000 0000" class="w-full p-4 rounded-2xl outline-none focus:border-sky-500">
             </div>
-            <h1 class="text-5xl md:text-7xl font-extrabold text-slate-900 mb-6 tracking-tight leading-[1.1]">
-                Cheap Data. <br> Paid in <span class="text-sky-500">Crypto.</span>
-            </h1>
-            <p class="text-slate-500 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-                Empowering Nigerians to convert USDT and USDC into high-speed internet data instantly. No bank delays, no high fees.
-            </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="auth.html" class="bg-sky-500 text-white px-10 py-4 rounded-2xl font-bold text-lg shadow-xl shadow-sky-200 hover:scale-105 transition">Buy Data Now</a>
-                <div class="flex -space-x-2">
-                    <img class="w-10 h-10 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?u=1">
-                    <img class="w-10 h-10 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?u=2">
-                    <img class="w-10 h-10 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?u=3">
-                    <div class="w-10 h-10 rounded-full bg-slate-100 border-2 border-white flex items-center justify-center text-[10px] font-bold text-slate-400">+2k</div>
-                </div>
-            </div>
-        </section>
+            <button onclick="processPurchase()" class="w-full bg-sky-500 py-4 rounded-2xl font-black uppercase tracking-widest shadow-lg shadow-sky-500/20 hover:bg-sky-400 transition-all">
+                Complete Purchase
+            </button>
+        </div>
+    </div>
 
-        <!-- Dynamic Data Section -->
-        <section class="max-w-7xl mx-auto px-6 mb-24">
-            <div class="flex justify-between items-end mb-12">
-                <div>
-                    <h2 class="text-3xl font-extrabold text-slate-900">Today's Hot Bundles</h2>
-                    <p class="text-slate-500">Instant delivery across all major networks</p>
-                </div>
-            </div>
+    <script>
+        let selectedNetwork = 'mtn';
+        let selectedPrice = 0;
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- MTN Card -->
-                <div class="bg-white p-8 rounded-[32px] border border-slate-100 hover:shadow-xl transition-all group">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/MTN_Logo.svg" class="h-10 mb-8 grayscale group-hover:grayscale-0 transition" alt="MTN">
-                    <div class="space-y-1 mb-6">
-                        <h4 class="text-xl font-bold">1.0GB SME</h4>
-                        <p class="text-slate-400 text-sm">30 Days Validity</p>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-2xl font-black text-sky-500">0.50 <span class="text-sm font-normal">USDT</span></span>
-                        <a href="auth.html" class="p-3 bg-slate-50 rounded-xl hover:bg-sky-500 hover:text-white transition"><i data-lucide="arrow-right"></i></a>
-                    </div>
-                </div>
+        const bundles = {
+            mtn: [
+                { size: "50GB", price: 4.50, duration: "30 Days" },
+                { size: "100GB", price: 8.50, duration: "30 Days" },
+                { size: "200GB", price: 15.50, duration: "6 Months" }
+            ],
+            airtel: [
+                { size: "50GB", price: 4.50, duration: "30 Days" },
+                { size: "100GB", price: 8.50, duration: "30 Days" },
+                { size: "200GB", price: 15.50, duration: "6 Months" }
+            ]
+        };
 
-                <div class="bg-white p-8 rounded-[32px] border border-slate-100 hover:shadow-xl transition-all group border-b-4 border-b-yellow-400">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/MTN_Logo.svg" class="h-10 mb-8 grayscale group-hover:grayscale-0 transition" alt="MTN">
-                    <div class="space-y-1 mb-6">
-                        <h4 class="text-xl font-bold">5.0GB SME</h4>
-                        <p class="text-slate-400 text-sm">30 Days Validity</p>
+        function renderBundles() {
+            const grid = document.getElementById('bundle-grid');
+            grid.innerHTML = '';
+            
+            bundles[selectedNetwork].forEach((b, index) => {
+                const card = document.createElement('div');
+                card.className = `bundle-card p-8 text-center flex flex-col items-center`;
+                card.onclick = () => selectBundle(card, b.price);
+                
+                // Matches the visual style of image_87c1fc.png
+                card.innerHTML = `
+                    <div class="w-10 h-10 rounded-full mb-6 flex items-center justify-center font-bold text-[8px] ${selectedNetwork === 'mtn' ? 'bg-yellow-400 text-black' : 'bg-red-600 text-white'}">
+                        ${selectedNetwork.toUpperCase()}
                     </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-2xl font-black text-sky-500">2.40 <span class="text-sm font-normal">USDT</span></span>
-                        <a href="auth.html" class="p-3 bg-slate-50 rounded-xl hover:bg-sky-500 hover:text-white transition"><i data-lucide="arrow-right"></i></a>
-                    </div>
-                </div>
+                    <h3 class="text-4xl font-black mb-4">${b.size}</h3>
+                    <p class="text-xl font-bold ${selectedNetwork === 'mtn' ? 'text-yellow-400' : 'text-red-500'} mb-2">${b.price} USDT</p>
+                    <p class="text-gray-500 text-sm font-medium">${b.duration}</p>
+                `;
+                grid.appendChild(card);
+            });
+        }
 
-                <!-- Airtel Card -->
-                <div class="bg-white p-8 rounded-[32px] border border-slate-100 hover:shadow-xl transition-all group">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Airtel_logo_-_2010.png" class="h-8 mb-10 grayscale group-hover:grayscale-0 transition" alt="Airtel">
-                    <div class="space-y-1 mb-6">
-                        <h4 class="text-xl font-bold">2.0GB Corp</h4>
-                        <p class="text-slate-400 text-sm">30 Days Validity</p>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-2xl font-black text-sky-500">0.95 <span class="text-sm font-normal">USDT</span></span>
-                        <a href="auth.html" class="p-3 bg-slate-50 rounded-xl hover:bg-sky-500 hover:text-white transition"><i data-lucide="arrow-right"></i></a>
-                    </div>
-                </div>
+        function switchNetwork(net) {
+            selectedNetwork = net;
+            document.querySelectorAll('button').forEach(b => b.classList.replace('bg-yellow-500', 'bg-white/5'));
+            const activeBtn = document.getElementById(`btn-${net}`);
+            activeBtn.className = `px-8 py-3 rounded-2xl font-bold border-2 ${net === 'mtn' ? 'bg-yellow-500 text-black border-yellow-500' : 'bg-red-600 text-white border-red-600'}`;
+            renderBundles();
+        }
 
-                <div class="bg-white p-8 rounded-[32px] border border-slate-100 hover:shadow-xl transition-all group border-b-4 border-b-red-500">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Airtel_logo-02.png" class="h-8 mb-10 grayscale group-hover:grayscale-0 transition" alt="Airtel">
-                    <div class="space-y-1 mb-6">
-                        <h4 class="text-xl font-bold">10GB Gift</h4>
-                        <p class="text-slate-400 text-sm">30 Days Validity</p>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-2xl font-black text-sky-500">4.50 <span class="text-sm font-normal">USDT</span></span>
-                        <a href="auth.html" class="p-3 bg-slate-50 rounded-xl hover:bg-sky-500 hover:text-white transition"><i data-lucide="arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </section>
+        function selectBundle(element, price) {
+            document.querySelectorAll('.bundle-card').forEach(c => c.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedPrice = price;
+        }
 
-        <!-- More Content Section -->
-        <section class="max-w-7xl mx-auto px-6 py-20 bg-slate-900 rounded-[48px] text-white">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left px-10">
-                <div>
-                    <div class="w-12 h-12 bg-sky-500/20 text-sky-400 rounded-xl flex items-center justify-center mb-6 mx-auto md:mx-0">
-                        <i data-lucide="shield"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Military-Grade Security</h3>
-                    <p class="text-slate-400 leading-relaxed">Your transactions are secured by blockchain technology and manual verification protocols.</p>
-                </div>
-                <div>
-                    <div class="w-12 h-12 bg-emerald-500/20 text-emerald-400 rounded-xl flex items-center justify-center mb-6 mx-auto md:mx-0">
-                        <i data-lucide="zap"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Instant Top-up</h3>
-                    <p class="text-slate-400 leading-relaxed">Once your crypto deposit is confirmed, data is sent to your phone number within 60 seconds.</p>
-                </div>
-                <div>
-                    <div class="w-12 h-12 bg-amber-500/20 text-amber-400 rounded-xl flex items-center justify-center mb-6 mx-auto md:mx-0">
-                        <i data-lucide="headset"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">24/7 Priority Support</h3>
-                    <p class="text-slate-400 leading-relaxed">Having issues? Our Nigerian-based support team is available around the clock via WhatsApp.</p>
-                </div>
-            </div>
-        </section>
-    </main>
-    <script>lucide.createIcons();</script>
+        function processPurchase() {
+            const phone = document.getElementById('phone').value;
+            if (!phone || selectedPrice === 0) return alert("Select a bundle and enter phone number");
+            alert(`Processing ${selectedNetwork.toUpperCase()} data for ${phone}. Total: ${selectedPrice} USDT`);
+            // Firebase logic would go here
+        }
+
+        renderBundles();
+    </script>
 </body>
 </html>
