@@ -83,38 +83,39 @@
             <span class="w-full h-px bg-white/5"></span>
         </div>
     </div>
+<script type="module">
+    import { auth, db } from './firebase-config.js';
+    import { GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-    <script type="module">
-        import { auth, db } from './firebase-config.js';
-        import { GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    lucide.createIcons();
 
-        // Initialize Lucide Icons
-        lucide.createIcons();
-
-        document.getElementById('google-login').onclick = async () => {
-            const provider = new GoogleAuthProvider();
-            try {
-                const result = await signInWithPopup(auth, provider);
+    document.getElementById('google-login').addEventListener('click', () => {
+        // ✅ Call signInWithPopup IMMEDIATELY — no await before it
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(auth, provider)
+            .then(async (result) => {
                 const user = result.user;
                 const userRef = doc(db, "users", user.uid);
                 const snap = await getDoc(userRef);
-                
+
                 if (!snap.exists()) {
-                    await setDoc(userRef, { 
-                        email: user.email, 
-                        name: user.displayName, 
-                        balance: 0, 
+                    await setDoc(userRef, {
+                        email: user.email,
+                        name: user.displayName,
+                        balance: 0,
                         isAdmin: false,
-                        photoURL: user.photoURL 
+                        photoURL: user.photoURL
                     });
                 }
                 window.location.href = 'dashboard.html';
-            } catch (err) { 
+            })
+            .catch((err) => {
                 console.error(err);
-                alert("Login failed. Check your Firebase configuration."); 
-            }
-        };
-    </script>
+                alert("Login failed: " + err.message);
+            });
+    });
+</script>
+ 
 </body>
 </html>
